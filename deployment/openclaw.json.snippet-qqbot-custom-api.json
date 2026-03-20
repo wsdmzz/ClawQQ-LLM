@@ -1,0 +1,44 @@
+{
+  "models": {
+    "providers": {
+      "87": {
+        "baseUrl": "http://127.0.0.1:8001/v1",
+        "apiKey": "<OPENCLAW_LLM_API_KEY>",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "DeepSeek-R1-Distill-Qwen-14B",
+            "name": "DeepSeek-R1-Distill-Qwen-14B",
+            "contextWindow": 100000
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "87/DeepSeek-R1-Distill-Qwen-14B"
+      },
+      "models": {
+        "87/DeepSeek-R1-Distill-Qwen-14B": {
+          "alias": "DeepSeek-R1-Distill-Qwen-14B"
+        }
+      }
+    }
+  },
+  "channels": {
+    "qqbot": {
+      "enabled": true,
+      "allowFrom": ["*"],
+      "appId": "<QQBOT_APPID>",
+      "clientSecret": "<QQBOT_CLIENT_SECRET>"
+    }
+  },
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "<OPENCLAW_GATEWAY_TOKEN>"
+    }
+  }
+}
