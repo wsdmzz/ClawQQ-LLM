@@ -1,5 +1,7 @@
 ## claw-qq-llm 集成（脱敏模板 + 运行说明）
 
+**中文说明**：[README.zh-CN.md](README.zh-CN.md)
+
 本目录用于保存你在服务器上完成的「OpenClaw 网关 + QQ 机器人 + 自定义 OpenAI 兼容 LLM API（vLLM）」对接方案。
 
 注意：
