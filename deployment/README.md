@@ -31,6 +31,12 @@
 - `models.providers.87.apiKey`：填入你的 LLM Bearer token（示例中用占位符）
 - 确保 `agents.defaults.model.primary` 指向：`87/DeepSeek-R1-Distill-Qwen-14B`
 
+### 2.1) Tools profile（完整工具权限）
+
+若需要完整工具能力，在 `~/.openclaw/openclaw.json` 中设置 `tools.profile` 为 `full`（与 `openclaw config set tools.profile full` 等价）。模板 `openclaw.json.snippet-qqbot-custom-api.json` 已包含该字段。
+
+修改后请**重启 Gateway** 再生效（例如 `openclaw gateway restart`，或你环境中的 systemd / 进程管理方式）。
+
 ## 3) QQ 机器人接入
 
 按 `deployment/openclaw.json.snippet-qqbot-custom-api.json` 配置 `channels.qqbot`：

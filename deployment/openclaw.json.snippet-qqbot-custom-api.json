@@ -35,6 +35,9 @@
       "clientSecret": "<QQBOT_CLIENT_SECRET>"
     }
   },
+  "tools": {
+    "profile": "full"
+  },
   "gateway": {
     "auth": {
       "mode": "token",

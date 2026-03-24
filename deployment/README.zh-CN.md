@@ -33,6 +33,18 @@ LLM 需支持 OpenAI 兼容接口：`POST /v1/chat/completions`。当 OpenClaw �
 
 若 QQ 仍走 agent 且使用了**缓存**的模型配置，请同时核对 `~/.openclaw/agents/main/agent/models.json` 中对应 provider 的 `baseUrl` / `apiKey` 是否与 `openclaw.json` 一致，可参考：`models.json.snippet-provider-87.json`。
 
+## 2.1 工具权限（`tools.profile`）
+
+若需要完整工具能力（与 `openclaw config set tools.profile full` 等价），在 `~/.openclaw/openclaw.json` 中加入：
+
+```json
+"tools": {
+  "profile": "full"
+}
+```
+
+片段文件 `openclaw.json.snippet-qqbot-custom-api.json` 已包含上述字段。修改后请**重启网关**再生效（例如 `openclaw gateway restart`；若你使用的 CLI 版本不支持子命令，可用 systemd：`systemctl --user restart openclaw`，以本机实际安装为准）。
+
 ## 3. QQ 机器人
 
 在同一套 `openclaw.json` 片段中配置 `channels.qqbot`：
