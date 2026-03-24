@@ -1,0 +1,49 @@
+{
+  "models": {
+    "providers": {
+      "87": {
+        "baseUrl": "http://127.0.0.1:8001/v1",
+        "apiKey": "<OPENCLAW_LLM_API_KEY>",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "Qwen2.5-14B-Instruct-AWQ",
+            "name": "Qwen2.5-14B-Instruct-AWQ",
+            "api": "openai-completions",
+            "contextWindow": 32768,
+            "maxTokens": 2048
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "87/Qwen2.5-14B-Instruct-AWQ"
+      },
+      "models": {
+        "87/Qwen2.5-14B-Instruct-AWQ": {
+          "alias": "Qwen2.5-14B-Instruct-AWQ"
+        }
+      }
+    }
+  },
+  "channels": {
+    "qqbot": {
+      "enabled": true,
+      "allowFrom": ["*"],
+      "appId": "<QQBOT_APPID>",
+      "clientSecret": "<QQBOT_CLIENT_SECRET>"
+    }
+  },
+  "tools": {
+    "profile": "full"
+  },
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "<OPENCLAW_GATEWAY_TOKEN>"
+    }
+  }
+}
