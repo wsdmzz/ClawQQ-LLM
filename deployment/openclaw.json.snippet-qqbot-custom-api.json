@@ -7,9 +7,11 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "DeepSeek-R1-Distill-Qwen-14B",
-            "name": "DeepSeek-R1-Distill-Qwen-14B",
-            "contextWindow": 100000
+            "id": "Qwen2.5-14B-Instruct-AWQ",
+            "name": "Qwen2.5-14B-Instruct-AWQ",
+            "api": "openai-completions",
+            "contextWindow": 32768,
+            "maxTokens": 2048
           }
         ]
       }
@@ -18,11 +20,11 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "87/DeepSeek-R1-Distill-Qwen-14B"
+        "primary": "87/Qwen2.5-14B-Instruct-AWQ"
       },
       "models": {
-        "87/DeepSeek-R1-Distill-Qwen-14B": {
-          "alias": "DeepSeek-R1-Distill-Qwen-14B"
+        "87/Qwen2.5-14B-Instruct-AWQ": {
+          "alias": "Qwen2.5-14B-Instruct-AWQ"
         }
       }
     }

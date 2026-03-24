@@ -9,6 +9,20 @@
 - 此处文件已脱敏，不包含真实 `apiKey` / `clientSecret` / gateway token。
 - 你的 OpenClaw 真实运行配置仍在服务器的 `~/.openclaw/` 下生效，本目录只提供“模板/片段/说明”用于同步与复现。
 
+### Verified stack (vLLM tool calling + OpenClaw + QQ)
+
+This repo documents a working setup:
+
+| Part      | Notes                                                                                                            |
+| --------- | ---------------------------------------------------------------------------------------------------------------- |
+| Model     | **Qwen2.5-14B-Instruct-AWQ** (`--served-model-name` must match OpenClaw model id)                                |
+| vLLM      | `--enable-auto-tool-choice` + `--tool-call-parser hermes`                                                        |
+| Self-test | Both **`tool_choice: required`** and **`auto`** return proper **`message.tool_calls`**                           |
+| OpenClaw  | Provider `api`: **`openai-completions`**, `baseUrl`: **`http://127.0.0.1:8001/v1`**, `tools.profile`: **`full`** |
+| QQ        | `channels.qqbot` per snippet; restart gateway after changes                                                      |
+
+**Note:** `Qwen2.5-Coder-*` as the primary model often emits tool-like text in `content` instead of structured `tool_calls`. Prefer **Instruct** for local 14B + agents. See `vllm-openai-compatible.md` for curl and serve examples.
+
 ## 1) vLLM 启动参数（必须）
 
 你的 LLM 后端需要支持 OpenAI 兼容的 `POST /v1/chat/completions`，并且当请求里携带 `tools`、`tool_choice: "auto"` 时不能报错：
@@ -18,7 +32,7 @@
 因此建议启动时显式加入：
 
 - `--enable-auto-tool-choice`
-- `--tool-call-parser`
+- `--tool-call-parser` (**Qwen2.5**: **`hermes`**; other families per vLLM docs)
 
 参考 `deployment/vllm-openai-compatible.md`。
 
@@ -29,7 +43,7 @@
 - `models.providers.87.baseUrl`：使用 **`http://127.0.0.1:8001/v1`**（不要带 `/chat`）
 - `models.providers.87.api`：`openai-completions`
 - `models.providers.87.apiKey`：填入你的 LLM Bearer token（示例中用占位符）
-- 确保 `agents.defaults.model.primary` 指向：`87/DeepSeek-R1-Distill-Qwen-14B`
+- 确保 `agents.defaults.model.primary` 指向：`87/Qwen2.5-14B-Instruct-AWQ`（与 vLLM `--served-model-name` 一致）
 
 ### 2.1) Tools profile（完整工具权限）
 
